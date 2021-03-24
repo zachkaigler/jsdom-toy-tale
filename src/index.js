@@ -14,8 +14,15 @@ document.addEventListener("DOMContentLoaded", () => {
         
         let cardDiv = document.createElement("div")
             cardDiv.classList = "card"
-            
+        let h2Tag = document.createElement("h2")
+        let imgTag = document.createElement("img")
+            imgTag.src = toy.image
+        let likesTag = document.createElement("p")    
+            likesTag.innerText = toy.likes
+
+
         toyCollectionDiv.append(cardDiv)
+
       })
       // cardDiv.innerText = toy
     })
