@@ -43,12 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
               "content-type": "application/json"
             },
             body: JSON.stringify({
-              "likes": toy.likes + 1
-            }).then(newLike => newLike.json())
-              .then(function (newLike) {
-                
+              likes: toy.likes + 1
+            })
+          })
+          
+            .then(newLike => newLike.json())
+              .then(function (newLikeObj) {
+                toy = newLikeObj
+                likesTag.innerText = newLikeObj.likes
               })
-          } )
         })
 
       })
@@ -96,6 +99,24 @@ document.addEventListener("DOMContentLoaded", () => {
         cardDiv.append(likesButton)
 
         toyCollectionDiv.append(cardDiv)
+
+        likesButton.addEventListener("click", function(){
+          fetch(`http://localhost:3000/toys/${newToy.id}`, {
+            method: "PATCH",
+            headers: {
+              "content-type": "application/json"
+            },
+            body: JSON.stringify({
+              likes: newToy.likes + 1
+            })
+          })
+          
+            .then(newLike => newLike.json())
+              .then(function (newLikeObj) {
+                newToy = newLikeObj
+                likesTag.innerText = newLikeObj.likes
+              })
+        })
       })
   })
   
