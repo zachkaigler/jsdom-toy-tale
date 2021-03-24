@@ -35,6 +35,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         toyCollectionDiv.append(cardDiv)
 
+
+        likesButton.addEventListener("click", function(){
+          fetch(`http://localhost:3000/toys/${toy.id}`, {
+            method: "PATCH",
+            headers: {
+              "content-type": "application/json"
+            },
+            body: JSON.stringify({
+              "likes": toy.likes + 1
+            }).then(newLike => newLike.json())
+              .then(function (newLike) {
+                
+              })
+          } )
+        })
+
       })
     })
   
