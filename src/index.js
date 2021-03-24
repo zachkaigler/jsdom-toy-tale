@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let imgTag = document.createElement("img")
             imgTag.src = toy.image
+            imgTag.classList = "toy-avatar"
 
         let likesTag = document.createElement("p")    
             likesTag.innerText = toy.likes
@@ -53,7 +54,33 @@ document.addEventListener("DOMContentLoaded", () => {
         "image": imageUrlUserInput,
         "likes": 0
       })
-    })
+    }).then(newObj => newObj.json())
+      .then(function (newToy) {
+        let toyCollectionDiv = document.querySelector("div#toy-collection")
+        
+        let cardDiv = document.createElement("div")
+            cardDiv.classList = "card"
+
+        let h2Tag = document.createElement("h2")
+            h2Tag.innerText = newToy.name
+
+        let imgTag = document.createElement("img")
+            imgTag.src = newToy.image
+            imgTag.classList = "toy-avatar"
+
+        let likesTag = document.createElement("p")    
+            likesTag.innerText = newToy.likes
+
+        let likesButton = document.createElement("button")
+            likesButton.classList = "like-btn"
+
+        cardDiv.append(h2Tag)
+        cardDiv.append(imgTag)
+        cardDiv.append(likesTag)
+        cardDiv.append(likesButton)
+
+        toyCollectionDiv.append(cardDiv)
+      })
   })
   
   addBtn.addEventListener("click", () => {
